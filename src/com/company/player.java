@@ -35,7 +35,7 @@ public class player extends entity {
 
         worldX = gp.tilesize * 23; //default position of character
         worldY = gp.tilesize * 21;
-        speed = 4;
+        speed = 10;
         direction = "down"; //default position of character
     }
     public void getPlayerImage(){
@@ -193,3 +193,4 @@ public class player extends entity {
         g2.drawImage(image, screenX, screenY, gp.tilesize, gp.tilesize, null);
     }
 }
+//shubham here
