@@ -193,4 +193,3 @@ public class player extends entity {
         g2.drawImage(image, screenX, screenY, gp.tilesize, gp.tilesize, null);
     }
 }
-//shubham here
