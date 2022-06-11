@@ -1,6 +1,7 @@
 package com.company;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class player extends entity {
@@ -35,23 +36,35 @@ public class player extends entity {
 
         worldX = gp.tilesize * 23; //default position of character
         worldY = gp.tilesize * 21;
-        speed = 10;
+        speed = 10;  //playerspeed
         direction = "down"; //default position of character
     }
     public void getPlayerImage(){
-        try {
-            up1 =  ImageIO.read(getClass().getResourceAsStream("/playersprites/boy_up_1.png"));
-            up2 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_up_2.png")));
-            down1 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_down_1.png")));
-            down2 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_down_2.png")));
-            left1 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_left_1.png")));
-            left2 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_left_2.png")));
-            right1 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_right_1.png")));
-            right2 =  ImageIO.read((getClass().getResourceAsStream("/playersprites/boy_right_2.png")));
 
-        } catch (Exception e) {
+        up1 = setup("boy_up_1");
+        up2 = setup("boy_up_2");
+        down1 = setup("boy_down_1");
+        down2 = setup("boy_down_2");
+        left1 = setup("boy_left_1");
+        left2 = setup("boy_left_2");
+        right1 = setup("boy_right_1");
+        right2 = setup("boy_right_2");
+
+    }
+
+    public BufferedImage setup(String imageName){
+
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream("/playersprites/"+imageName+".png"));
+            image = uTool.scaledImage(image, gp.tilesize, gp.tilesize);
+
+        }catch(IOException e){
             e.printStackTrace();
         }
+        return image;
     }
 
 
@@ -190,6 +203,6 @@ public class player extends entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tilesize, gp.tilesize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }
