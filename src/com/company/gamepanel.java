@@ -2,6 +2,8 @@ package com.company;
 import objects.SuperObject;
 import tile.TileManager;
 import java.awt.*;
+
+
 import javax.swing.*;
 
 public class gamepanel extends JPanel implements Runnable{
@@ -24,7 +26,7 @@ public class gamepanel extends JPanel implements Runnable{
     TileManager tileM = new TileManager(this);
 
     //to get key inputs
-    KeyHandler keyh = new KeyHandler();
+    KeyHandler keyh = new KeyHandler(this);
 
 
     Sound se = new Sound();
@@ -42,9 +44,13 @@ public class gamepanel extends JPanel implements Runnable{
 
     //entity and object
     public SuperObject obj[] = new SuperObject[10];
-
-
     public player p = new player(this, keyh);
+    public entity npc[] = new entity[10];
+    // game state
+    public int gameState;
+    public final int playState=1;
+    public final int pauseState = 2;
+
 
     // methods of jpanel
     public gamepanel(){
@@ -59,7 +65,9 @@ public class gamepanel extends JPanel implements Runnable{
     public void setupGame(){
 
         aSetter.setObject();
+        aSetter.setNPC();
         playMusic(0);
+        gameState = playState;
 
     }
     // a method to execute gameloop
@@ -97,7 +105,12 @@ public class gamepanel extends JPanel implements Runnable{
         }
     }
     public void update(){
-        p.update();
+        if (gameState==playState){
+            p.update();
+        }
+       if (gameState==playState){
+
+       }
 
     }
     public void paintComponent(Graphics g){
@@ -116,6 +129,11 @@ public class gamepanel extends JPanel implements Runnable{
                 if(obj[i] != null){
                     obj[i].draw(g2, this);
                 }
+            }
+            //NPC
+            for (int i = 0; i < npc.length; i++)
+            if (npc[i] != null){
+                npc[i].draw(g2);
             }
 
             //player

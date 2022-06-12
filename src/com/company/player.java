@@ -11,11 +11,10 @@ public class player extends entity {
 
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
 
     public player(gamepanel gp, KeyHandler keyh){
 
-        this.gp = gp;
+        super(gp);
         this.keyh = keyh;
 
         screenX = gp.width/2 - (gp.tilesize/2);
@@ -41,14 +40,14 @@ public class player extends entity {
     }
     public void getPlayerImage(){
 
-        up1 = setup("boy_up_1");
-        up2 = setup("boy_up_2");
-        down1 = setup("boy_down_1");
-        down2 = setup("boy_down_2");
-        left1 = setup("boy_left_1");
-        left2 = setup("boy_left_2");
-        right1 = setup("boy_right_1");
-        right2 = setup("boy_right_2");
+        up1 = setup("/playersprites/boy_up_1");
+        up2 = setup("/playersprites/boy_up_2");
+        down1 = setup("/playersprites/boy_down_1");
+        down2 = setup("/playersprites/boy_down_2");
+        left1 = setup("/playersprites/boy_left_1");
+        left2 = setup("/playersprites/boy_left_2");
+        right1 = setup("/playersprites/boy_right_1");
+        right2 = setup("/playersprites/boy_right_2");
 
     }
 
@@ -126,40 +125,8 @@ public class player extends entity {
 
         if(i != 999){
 
-            String objectName = (this.gp.obj[i]).name;
-            String str1;
-
-            switch (objectName){
-                case "key":
-                    gp.playSE(1);
-                    hasKey++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You got a Key!");
-                    break;
-                case "Door":
-                    if(hasKey > 0){
-                        gp.playSE(3);
-                        gp.obj[i] = null;
-                        hasKey--;
-                        gp.ui.showMessage("You Opened the Door!");
-                    }
-                    else {
-                        gp.ui.showMessage("You need a Key!");
-                    }
-                    break;
-                case "Boots":
-                    gp.playSE(2);
-                    speed += 1;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("Speed Up!");
-                    break;
-                case "Chest":
-                    gp.ui.GameFinished = true;
-                    gp.stopMusic();
-                    gp.playSE(4);
-                    break;
-
-            }
+            
+            
 
         }
 
