@@ -112,6 +112,96 @@ public class CollisionChecker {
 
         return index;
     }
+    //NPC or MONSTER
+    public int checkEntity(entity entity, entity[] target){
+
+        int index = 999; //any arbitrary number, to check index of the interacting object
+
+        for(int i = 0; i < target.length; i++ ){
+
+            if(target[i]!= null){
+                entity.solidArea.x = entity.worldX + entity.solidArea.x;
+                entity.solidArea.y = entity.worldY+ entity.solidArea.y;
+                target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
+                target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
+
+                switch(entity.direction){
+                    case "up":
+                        entity.solidArea.y -= entity.speed;
+                        if(entity.solidArea.intersects(target[i].solidArea)){
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                        break;
+                    case "down":
+                        entity.solidArea.y += entity.speed;
+                        if(entity.solidArea.intersects(target[i].solidArea)){
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                        break;
+                    case "left":
+                        entity.solidArea.x -= entity.speed;
+                        if(entity.solidArea.intersects(target[i].solidArea)){
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                        break;
+                    case "right":
+                        entity.solidArea.x += entity.speed;
+                        if(entity.solidArea.intersects(target[i].solidArea)){
+                                entity.collisionOn = true;
+                                index = i;
+                        }
+                        break;
+                }
+                entity.solidArea.x = entity.solidAreaDefaultX;
+                entity.solidArea.y = entity.solidAreaDefaultY;
+                (target[i]).solidArea.x = (target[i]).solidAreaDefaultX;
+                (target[i]).solidArea.y = (target[i]).solidAreaDefaultY;
+            }
+        }
+
+        return index;
+    }
+
+    public void checkPlayer(entity entity){
+        entity.solidArea.x = entity.worldX + entity.solidArea.x;
+        entity.solidArea.y = entity.worldY+ entity.solidArea.y;
+        gp.p.solidArea.x = gp.p.worldX + gp.p.solidArea.x;
+        gp.p.solidArea.y = gp.p.worldY + gp.p.solidArea.y;
+
+        switch(entity.direction){
+            case "up":
+                entity.solidArea.y -= entity.speed;
+                if(entity.solidArea.intersects(gp.p.solidArea)){
+                    entity.collisionOn = true;
+                }
+                break;
+            case "down":
+                entity.solidArea.y += entity.speed;
+                if(entity.solidArea.intersects(gp.p.solidArea)){
+                    entity.collisionOn = true;
+                }
+                break;
+            case "left":
+                entity.solidArea.x -= entity.speed;
+                if(entity.solidArea.intersects(gp.p.solidArea)){
+                    entity.collisionOn = true;
+                }
+                break;
+            case "right":
+                entity.solidArea.x += entity.speed;
+                if(entity.solidArea.intersects(gp.p.solidArea)){
+                    entity.collisionOn = true;
+                }
+                break;
+        }
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gp.p.solidArea.x = gp.p.solidAreaDefaultX;
+        gp.p.solidArea.y = gp.p.solidAreaDefaultY;
+    }
 
 }
 

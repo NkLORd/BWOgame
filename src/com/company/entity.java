@@ -10,10 +10,10 @@ public class entity {
     gamepanel gp;
     public int worldX;
     public int worldY;
-    public static int speed;
+    public int speed;
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public static String direction;
+    public String direction;
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
@@ -22,6 +22,7 @@ public class entity {
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
     public boolean collisionOn = false;
+    public int actionLockCounter = 0;
 
     public entity(gamepanel gp){
 
@@ -29,7 +30,45 @@ public class entity {
 
     }
     public void setAction(){}
-    public void update(){}
+    public void update(){
+
+        setAction();
+
+        collisionOn = false;
+        gp.cChecker.checkTile(this);
+        gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkPlayer(this);
+
+        if(!collisionOn){
+            switch(direction){ //cartesian coordinate movement by 4 pixels
+                case"up":
+                    worldY -= speed;
+                    break;
+                case"down":
+                    worldY += speed;
+                    break;
+                case"left":
+                    worldX -= speed;
+                    break;
+                case"right":
+                    worldX += speed;
+                    break;
+            }
+        }
+
+
+        spriteCounter++;
+        if(spriteCounter > 12){
+            if(spriteNum == 1){
+                spriteNum = 2;
+            }
+            else if(spriteNum == 2){
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
+
+    }
 
     public void draw(Graphics2D g2) {
 

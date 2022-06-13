@@ -68,7 +68,6 @@ public class gamepanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
         playMusic(0);
-        stopMusic();
         gameState = playState;
 
     }
@@ -108,7 +107,13 @@ public class gamepanel extends JPanel implements Runnable{
     }
     public void update(){
         if (gameState == playState){
-            p.update();
+            p.update();  //PLAYER
+
+            for(int i = 0; i < npc.length; i++){    //NPC
+                if(npc[i] != null){
+                    npc[i].update();
+                }
+            }
         }
        if (gameState == pauseState){
            //nothing to update

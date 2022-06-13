@@ -93,6 +93,10 @@ public class player extends entity {
             int objIndex = gp.cChecker.checkObject(this,true);
             pickUpObject(objIndex);
 
+            //CHECK NPC COLLISION
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+
             if(!collisionOn){
                 switch(direction){ //cartesian coordinate movement by 4 pixels
                     case"up":
@@ -137,6 +141,15 @@ public class player extends entity {
 
         }
 
+    }
+
+    public void interactNPC(int i){
+
+        if(i != 999){
+
+            System.out.println("You are hitting NPC");
+
+        }
     }
     public void draw(Graphics2D g2) {
 
