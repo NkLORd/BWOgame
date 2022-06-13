@@ -14,7 +14,7 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
-    Boolean GameFinished = false;
+    public boolean GameFinished = false;
     double playtime;
     DecimalFormat dFormat = new DecimalFormat("#0.00");
 
@@ -40,7 +40,7 @@ public class UI {
         g2.setColor(Color.WHITE);
 
         if (gp.gameState == gp.playState){
-
+            // Do PlayState stuff later
         }
         if(gp.gameState == gp.pauseState){
             drawPausedScreen();
@@ -51,13 +51,13 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,80F));
         String text = "PAUSED";
         int x = getXforCenteredText(text);
-        int y=gp.height/2;
+        int y = gp.height/2;
 
         g2.drawString(text,x,y);
     }
     public int getXforCenteredText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x=gp.width/2 - length/2;
+        int x = gp.width/2 - length/2;
         return x;
     }
 }

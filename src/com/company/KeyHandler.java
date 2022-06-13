@@ -9,6 +9,7 @@ public class KeyHandler implements KeyListener{
     boolean checkDrawTime = false;
 
     public KeyHandler(gamepanel gp){
+
         this.gp=gp;
     }
 

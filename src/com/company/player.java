@@ -6,11 +6,14 @@ import javax.imageio.ImageIO;
 
 public class player extends entity {
 
-    gamepanel gp;
     KeyHandler keyh;
 
     public final int screenX;
     public final int screenY;
+
+    //public int hasKey = 0;
+
+    int standCounter = 0;
 
     public player(gamepanel gp, KeyHandler keyh){
 
@@ -50,21 +53,21 @@ public class player extends entity {
         right2 = setup("/playersprites/boy_right_2");
 
     }
-
-    public BufferedImage setup(String imageName){
-
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream("/playersprites/"+imageName+".png"));
-            image = uTool.scaledImage(image, gp.tilesize, gp.tilesize);
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return image;
-    }
+//
+//    public BufferedImage setup(String imageName){
+//
+//        UtilityTool uTool = new UtilityTool();
+//        BufferedImage image = null;
+//
+//        try{
+//            image = ImageIO.read(getClass().getResourceAsStream("/playersprites/"+imageName+".png"));
+//            image = uTool.scaledImage(image, gp.tilesize, gp.tilesize);
+//
+//        }catch(IOException e){
+//            e.printStackTrace();
+//        }
+//        return image;
+//    }
 
 
     public void update(){ //60 times per sec updates
@@ -119,20 +122,22 @@ public class player extends entity {
                 spriteCounter = 0;
             }
         }
+        else{
+            standCounter++;
+            if(standCounter == 20){
+                spriteNum = 1;
+                standCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int i){
 
         if(i != 999){
 
-            
-            
-
         }
 
     }
-
-
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
