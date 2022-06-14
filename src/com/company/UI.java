@@ -2,7 +2,7 @@ package com.company;
 
 import objects.OBJ_Heart;
 import objects.SuperObject;
-import objects.obj_Key;
+import com.company.player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -33,8 +33,8 @@ public class UI {
         //create hud obj
         SuperObject heart = new OBJ_Heart(gp);
         heart_full = heart.image;
-        heart_half = heart.image;
-        heart_blank = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
     }
 
     public void showMessage(String text){
@@ -68,12 +68,12 @@ public class UI {
 
     public void drawPlayerLife(){
 
-        gp.p.life = 5; //will have to change this
+        gp.p.life = 6; //will have to change this
         int x = gp.tilesize/2;
         int y = gp.tilesize/2;
         int i = 0;
 
-        //draw blank
+        //draw blank heart
         while(i < gp.p.maxLife/2){
             g2.drawImage(heart_blank, x, y, null);
             i++;
@@ -93,7 +93,7 @@ public class UI {
                 g2.drawImage(heart_full, x, y, null);
             }
             i++;
-            x+= gp.tilesize;
+            x += gp.tilesize;
         }
     }
     public void drawPausedScreen(){

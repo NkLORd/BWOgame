@@ -30,9 +30,6 @@ public class entity {
     public int maxLife;
     public int life;
 
-
-
-
     public entity(gamepanel gp){
 
         this.gp = gp;

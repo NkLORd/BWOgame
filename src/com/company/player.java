@@ -38,10 +38,10 @@ public class player extends entity {
 
         worldX = gp.tilesize * 23; //default position of character
         worldY = gp.tilesize * 21;
-        speed = 10;  //playerspeed
+        speed = 10;  //player speed
         direction = "down"; //default position of character
 
-        //palyer status
+        //player status
         maxLife = 6;
         life = maxLife;
 
