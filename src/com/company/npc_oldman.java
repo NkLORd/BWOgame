@@ -11,6 +11,8 @@ public class npc_oldman extends entity{
         speed = 1;
 
         getImage();
+        setDialogue();
+
     }
     public void getImage(){
         //change image name acc to images
@@ -24,7 +26,14 @@ public class npc_oldman extends entity{
         right2 = setup("/npc/oldman_right_2");
 
     }
-    public void setAction(){
+    public void setDialogue() // for storing the dialogue text for the NPC
+    {
+        dialogues[0] = "Hello champ!";
+        dialogues[1] = "to find the treasure? so you \n have come to this island  ";
+        dialogues[2] = "I use to be a great wizard....but you see now i'm a bit old to take any adventure";
+        dialogues[3] = "well good luck to you!!";
+        dialogues[4] = "come to me if you need any help ;)";
+    }    public void setAction(){
 
         actionLockCounter++;
         if(actionLockCounter == 120){
@@ -45,6 +54,9 @@ public class npc_oldman extends entity{
 
             actionLockCounter = 0;
         }
+    }
+    public void speak(){
+        super.speak();
     }
 
 }

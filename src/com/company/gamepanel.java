@@ -26,7 +26,7 @@ public class gamepanel extends JPanel implements Runnable{
     TileManager tileM = new TileManager(this);
 
     //to get key inputs
-    KeyHandler keyh = new KeyHandler(this);
+    public KeyHandler keyh = new KeyHandler(this);
 
 
     Sound se = new Sound();
@@ -51,6 +51,8 @@ public class gamepanel extends JPanel implements Runnable{
     public int gameState;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
+
 
 
     // methods of jpanel

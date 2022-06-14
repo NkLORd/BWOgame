@@ -6,7 +6,7 @@ import com.company.UtilityTool;
 import com.company.gamepanel;
 
 public class SuperObject{
-    public BufferedImage image;
+    public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
     public int worldX,worldY;

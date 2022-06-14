@@ -23,6 +23,15 @@ public class entity {
     public int solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    String dialogues[] = new String[20];
+    int dialogueIndex= 0;
+
+    // chapter status
+    public int maxLife;
+    public int life;
+
+
+
 
     public entity(gamepanel gp){
 
@@ -30,6 +39,30 @@ public class entity {
 
     }
     public void setAction(){}
+    public void speak(){
+
+
+        if(dialogues[dialogueIndex] == null){
+            dialogueIndex = 0;
+        }
+        gp.ui.currentDialogue = dialogues[dialogueIndex];
+        dialogueIndex++;
+        switch(gp.p.direction){
+            case "up":
+                direction = "down";
+                break;
+            case "down":
+                direction = "up";
+                break;
+            case "left":
+                direction = "right";
+                break;
+            case "right":
+                direction = "left";
+                break;
+
+        }
+    }
     public void update(){
 
         setAction();

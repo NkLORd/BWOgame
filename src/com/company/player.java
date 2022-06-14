@@ -40,6 +40,11 @@ public class player extends entity {
         worldY = gp.tilesize * 21;
         speed = 10;  //playerspeed
         direction = "down"; //default position of character
+
+        //palyer status
+        maxLife = 6;
+        life = maxLife;
+
     }
     public void getPlayerImage(){
 
@@ -74,6 +79,9 @@ public class player extends entity {
 
         if(keyh.upPressed || keyh.downPressed || keyh.rightPressed || keyh.leftPressed)
         {
+            if(keyh.rightPressed){
+                direction = "right";
+            }
             if(keyh.upPressed){
                 direction = "up";
             }
@@ -83,9 +91,9 @@ public class player extends entity {
             if(keyh.leftPressed){
                 direction = "left";
             }
-            if(keyh.rightPressed){
-                direction = "right";
-            }
+//            if(keyh.rightPressed){
+//                direction = "right";
+//            }
 
             collisionOn = false;
             gp.cChecker.checkTile(this);
@@ -146,10 +154,14 @@ public class player extends entity {
     public void interactNPC(int i){
 
         if(i != 999){
-
-            System.out.println("You are hitting NPC");
+            if(gp.keyh.enterPressed == true){
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
 
         }
+        gp.keyh.enterPressed =false;
+
     }
     public void draw(Graphics2D g2) {
 
