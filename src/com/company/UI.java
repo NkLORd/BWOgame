@@ -226,7 +226,7 @@ public class UI {
 
         for(String line : currentDialogue.split("\n")){
             g2.drawString(line, x, y);
-            y =+ 40;
+            y += 40;
 
         }
 

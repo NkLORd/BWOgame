@@ -160,7 +160,7 @@ public class player extends entity {
             }
 
         }
-        gp.keyh.enterPressed =false;
+        gp.keyh.enterPressed = false;
 
     }
     public void draw(Graphics2D g2) {
