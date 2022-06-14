@@ -21,6 +21,9 @@ public class UI {
 //    double playtime;
 //    DecimalFormat dFormat = new DecimalFormat("#0.00");
     public String currentDialogue = "";
+    public int commandNum = 0;
+    public int titleScreenState = 0; //0: the first screen, 1: Second screen
+
 
 
     public UI(gamepanel gp){
@@ -47,6 +50,14 @@ public class UI {
 
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
+
+        //title state
+        if(gp.gameState == gp.titleState){
+
+            drawTitleScreen();
+
+        }
+
         //this is play state
         if (gp.gameState == gp.playState){
            drawPlayerLife();
@@ -64,6 +75,103 @@ public class UI {
 
         }
         
+    }
+
+    public void drawTitleScreen(){
+
+        if(titleScreenState == 0){
+
+            g2.setColor(new Color(0,0,0));
+            g2.fillRect(0,0, gp.width,gp.height);
+
+            //title name
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
+            String text = "Baby's Way Out";
+            int x = getXforCenteredText(text);
+            int y = gp.tilesize * 3;
+
+            //Shadow
+            g2.setColor(Color.gray);
+            g2.drawString(text, x+3, y+3);
+            //Main Color
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
+
+            //Baby's image to be displayed
+            x = gp.width/2 - (gp.tilesize * 2)/2;
+            y += gp.tilesize * 2;
+            g2.drawImage(gp.p.down1, x, y, gp.tilesize * 2,gp.tilesize *2,null);
+
+            //Menu
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+
+            text = "NEW GAME";
+            x = getXforCenteredText(text);
+            y += gp.tilesize * 3.5;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+
+            text = "LOAD GAME";
+            x = getXforCenteredText(text);
+            y += gp.tilesize * 1;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+
+            text = "QUIT";
+            x = getXforCenteredText(text);
+            y += gp.tilesize * 1;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+        }
+        else if(titleScreenState == 1){
+
+            //Class Section Screen
+            g2.setColor(Color.WHITE);
+            g2.setFont(g2.getFont().deriveFont(42F));
+
+            String text = "Select Your Class";
+            int x = getXforCenteredText(text);
+            int y = gp.tilesize * 3;
+            g2.drawString(text, x, y);
+
+            text = "Infant";
+            x = getXforCenteredText(text);
+            y += gp.tilesize * 3;
+            g2.drawString(text, x, y);
+            if(commandNum == 0){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+
+            text = "Toddler";
+            x = getXforCenteredText(text);
+            y += gp.tilesize;
+            g2.drawString(text, x, y);
+            if(commandNum == 1){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+
+            text = "Kid";
+            x = getXforCenteredText(text);
+            y += gp.tilesize;
+            g2.drawString(text, x, y);
+            if(commandNum == 2){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+            text = "Back";
+            x = getXforCenteredText(text);
+            y += gp.tilesize * 2;
+            g2.drawString(text, x, y);
+            if(commandNum == 3){
+                g2.drawString(">", x - gp.tilesize, y);
+            }
+        }
+
     }
 
     public void drawPlayerLife(){
