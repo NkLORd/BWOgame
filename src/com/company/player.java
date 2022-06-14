@@ -38,7 +38,7 @@ public class player extends entity {
 
         worldX = gp.tilesize * 23; //default position of character
         worldY = gp.tilesize * 21;
-        speed = 10;  //player speed
+        speed = 6;  //player speed
         direction = "down"; //default position of character
 
         //player status
@@ -105,6 +105,11 @@ public class player extends entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            //check event
+            gp.eHandler.checkEvent();
+
+            gp.keyh.enterPressed = false;
+
             if(!collisionOn){
                 switch(direction){ //cartesian coordinate movement by 4 pixels
                     case"up":
@@ -160,7 +165,7 @@ public class player extends entity {
             }
 
         }
-        gp.keyh.enterPressed = false;
+
 
     }
     public void draw(Graphics2D g2) {

@@ -1,12 +1,9 @@
 package com.company;
 
 import objects.OBJ_Heart;
-import objects.SuperObject;
-import com.company.player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
 
 public class UI {
     gamepanel gp;
@@ -34,7 +31,7 @@ public class UI {
         //keyimage = key.image;
 
         //create hud obj
-        SuperObject heart = new OBJ_Heart(gp);
+        entity heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;
@@ -176,7 +173,7 @@ public class UI {
 
     public void drawPlayerLife(){
 
-        gp.p.life = 6; //will have to change this
+//      gp.p.life = 6; //will have to change this
         int x = gp.tilesize/2;
         int y = gp.tilesize/2;
         int i = 0;
