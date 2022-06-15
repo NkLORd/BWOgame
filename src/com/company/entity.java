@@ -23,11 +23,14 @@ public class entity {
     public int solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex= 0;
     public BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false;
+    public int type;
 
     // chapter status
     public int maxLife;
@@ -70,7 +73,17 @@ public class entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
+        boolean contactPlayer =  gp.cChecker.checkPlayer(this);
+
+        if(this.type == 2 && contactPlayer == true){
+            if(gp.p.invincible == false ){
+                gp.p.life -= 1;
+                gp.p.invincible = true;
+
+
+            }        }
 
         if(!collisionOn){
             switch(direction){ //cartesian coordinate movement by 4 pixels
