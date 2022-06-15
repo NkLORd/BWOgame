@@ -16,14 +16,14 @@ public class npc_oldman extends entity{
     }
     public void getImage(){
         //change image name acc to images
-        up1 = setup("/npc/oldman_up_1");
-        up2 = setup("/npc/oldman_up_2");
-        down1 = setup("/npc/oldman_down_1");
-        down2 = setup("/npc/oldman_down_2");
-        left1 = setup("/npc/oldman_left_1");
-        left2 = setup("/npc/oldman_left_2");
-        right1 = setup("/npc/oldman_right_1");
-        right2 = setup("/npc/oldman_right_2");
+        up1 = setup("/npc/oldman_up_1", gp.tilesize, gp.tilesize);
+        up2 = setup("/npc/oldman_up_2", gp.tilesize, gp.tilesize);
+        down1 = setup("/npc/oldman_down_1", gp.tilesize, gp.tilesize);
+        down2 = setup("/npc/oldman_down_2", gp.tilesize, gp.tilesize);
+        left1 = setup("/npc/oldman_left_1", gp.tilesize, gp.tilesize);
+        left2 = setup("/npc/oldman_left_2", gp.tilesize, gp.tilesize);
+        right1 = setup("/npc/oldman_right_1", gp.tilesize, gp.tilesize);
+        right2 = setup("/npc/oldman_right_2", gp.tilesize, gp.tilesize);
 
     }
     public void setDialogue() // for storing the dialogue text for the NPC

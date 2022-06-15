@@ -7,12 +7,16 @@ import java.util.Random;
 
 public class MON_GreenSlime extends entity {
 
+    gamepanel gp;
+
     public MON_GreenSlime(gamepanel gp) {
         super(gp);
+        this.gp = gp;
 
         type = 2;
         name ="Green Slime";
         speed = 1;
+        maxLife = 4;
         life = maxLife;
         solidArea.x = 3;
         solidArea.y = 3;
@@ -25,14 +29,14 @@ public class MON_GreenSlime extends entity {
 
     }
     public void getImage() {
-        up1 = setup("/monster/greenslime_down_1");
-        up2 = setup("/monster/greenslime_down_2");
-        down1 = setup("/monster/greenslime_down_1");
-        down2 = setup("/monster/greenslime_down_2");
-        left1 = setup("/monster/greenslime_down_1");
-        left2 = setup("/monster/greenslime_down_2");
-        right1 = setup("/monster/greenslime_down_1");
-        right2 = setup("/monster/greenslime_down_2");
+        up1 = setup("/monster/greenslime_down_1", gp.tilesize, gp.tilesize);
+        up2 = setup("/monster/greenslime_down_2", gp.tilesize, gp.tilesize);
+        down1 = setup("/monster/greenslime_down_1", gp.tilesize, gp.tilesize);
+        down2 = setup("/monster/greenslime_down_2", gp.tilesize, gp.tilesize);
+        left1 = setup("/monster/greenslime_down_1", gp.tilesize, gp.tilesize);
+        left2 = setup("/monster/greenslime_down_2", gp.tilesize, gp.tilesize);
+        right1 = setup("/monster/greenslime_down_1", gp.tilesize, gp.tilesize);
+        right2 = setup("/monster/greenslime_down_2", gp.tilesize, gp.tilesize);
     }
 
     public void setAction() {
@@ -55,5 +59,11 @@ public class MON_GreenSlime extends entity {
 
             actionLockCounter = 0;
         }
+    }
+
+    public void damageReaction(){
+
+        actionLockCounter = 0;
+        direction = gp.p.direction;
     }
 }
