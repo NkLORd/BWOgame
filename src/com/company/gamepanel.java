@@ -60,7 +60,7 @@ public class gamepanel extends JPanel implements Runnable{
     public final int pauseState = 2;
     public final int dialogueState = 3;
 
-
+    public final int characterState = 4;
 
     // methods of jpanel
     public gamepanel(){

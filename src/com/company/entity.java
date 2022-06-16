@@ -43,6 +43,20 @@ public class entity {
     // chapter status
     public int maxLife;
     public int life;
+    public int level;
+    public int strength;
+    public int dexterity;
+    public int attack;
+    public int defence;
+    public int exp;
+    public int nextLevelExp;
+    public int coin;
+    public entity currentWeapon;
+    public entity currentShield;
+
+    public int attackValue;
+    public int defenceValue;
+
 
     public entity(gamepanel gp){
 
