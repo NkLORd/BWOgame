@@ -59,6 +59,7 @@ public class player extends entity {
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        projectile = new OBJ_Fireball(gp);
         attack = getAttack(); // strength + weapon
         defence = getDefence(); // dexterity + shield
 
@@ -184,6 +185,19 @@ public class player extends entity {
                 standCounter = 0;
             }
         }
+
+        if(gp.keyh.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30){
+
+            //set default coordinates, direction and user
+            projectile.set(worldX, worldY, direction, true, this);
+
+            //add it to the list
+            gp.projectileList.add(projectile);
+
+            shotAvailableCounter = 0;
+
+            gp.playSE(8);
+        }
         if (invincible == true){
             invincibleCounter++;
             if(invincibleCounter > 60){
@@ -192,7 +206,11 @@ public class player extends entity {
 
             }
 
-        }    }
+        }
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
+        }
+    }
 
     public void attacking(){
 
@@ -264,7 +282,7 @@ public class player extends entity {
 
     public void contactMonster(int i){
         if(i != 999){
-            if(invincible == false){
+            if(invincible == false && gp.monster[i].dying == false){
                 gp.playSE(6);
                 life -= 1;
                 invincible = true;

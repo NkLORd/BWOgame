@@ -33,8 +33,8 @@ public class entity {
     public String name;
     public boolean collision = false;
     boolean attacking = false;
-    public boolean alive = true;
     public boolean dying = false;
+    public boolean alive = true;
     public boolean hpBarOn = false;
     int hpBarCounter = 0;
     public int type;
@@ -43,6 +43,8 @@ public class entity {
     // chapter status
     public int maxLife;
     public int life;
+    public int maxMana;
+    public int mana;
     public int level;
     public int strength;
     public int dexterity;
@@ -56,6 +58,10 @@ public class entity {
 
     public int attackValue;
     public int defenceValue;
+
+    public Projectile projectile;
+    public int useCoat;
+    public int shotAvailableCounter = 0;
 
 
     public entity(gamepanel gp){
@@ -229,7 +235,6 @@ public class entity {
         if(dyingCounter > 30 && dyingCounter <= 35) {changeAplha(g2, 0f);}
         if(dyingCounter > 35 && dyingCounter <= 40) {changeAplha(g2, 1f);}
         if(dyingCounter > 40) {
-            dying = false;
             alive = false;
         }
     }
