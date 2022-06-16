@@ -233,7 +233,7 @@ public class entity {
 
         try{
             image = ImageIO.read(getClass().getResourceAsStream(imagePath+".png"));
-            image = uTool.scaledImage(image, gp.tilesize, gp.tilesize);
+            image = uTool.scaledImage(image, width, height);
 
         }catch(IOException e){
             e.printStackTrace();
