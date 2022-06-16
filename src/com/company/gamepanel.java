@@ -62,6 +62,7 @@ public class gamepanel extends JPanel implements Runnable{
     public final int dialogueState = 3;
 
     public final int characterState = 4;
+    public final int gameOverState = 6;
 
     // methods of jpanel
     public gamepanel(){
@@ -80,6 +81,21 @@ public class gamepanel extends JPanel implements Runnable{
         aSetter.setMonster();
         //playMusic(0);
         gameState = titleState;
+
+    }
+    public void retry(){
+        p.setDefaultPosition();
+        p.restoreLifeAndMan();
+        aSetter.setNPC();
+        aSetter.setMonster();
+    }
+    public void restart() {
+        p.setDefaultValues();
+        p.setDefaultPosition();
+        p.restoreLifeAndMan();
+        aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setMonster();
 
     }
     // a method to execute gameloop

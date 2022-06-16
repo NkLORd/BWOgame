@@ -64,6 +64,17 @@ public class player extends entity {
         defence = getDefence(); // dexterity + shield
 
     }
+    public void setDefaultPosition(){
+        worldX = gp.tilesize*23;
+        worldY = gp.tilesize*21;
+        direction="down";
+    }
+    public void restoreLifeAndMan(){
+        life = maxLife;
+        mana = maxMana;
+        invincible = false;
+
+    }
     public int getAttack(){
 
         return attack = strength * currentWeapon.attackValue;
@@ -210,7 +221,12 @@ public class player extends entity {
         if(shotAvailableCounter < 30){
             shotAvailableCounter++;
         }
+        if(life<=0){
+            gp.gameState= gp.gameOverState;
+            gp.playSE(12);
+        }
     }
+
 
     public void attacking(){
 
@@ -288,7 +304,6 @@ public class player extends entity {
                 invincible = true;
 
             }
-
         }
     }
 
